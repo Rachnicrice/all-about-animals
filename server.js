@@ -31,6 +31,9 @@ app.use(methodOverride((request, response) => {
 app.get('/', (req, res) => {
   res.render('pages/index', {datesArray: 0, id: false});
 });
+app.get('/play', (req, res) => {
+  res.render('pages/play')
+})
 // app.get('/:id/search', handleSearch);
 // app.post('/:id/searchResults', handleLocation);
 // app.post('/user', lookupUser);
@@ -42,6 +45,21 @@ app.use(error);
 
 function notFoundHandler(req, res) {
   res.status(404).send('huh?');
+}
+
+function addUser(req, res) {
+  let { username, password} = req.body;
+  let SQL = `INSERT INTO users (username, password) VALUES ($1, $2) RETURNING *`;
+
+  let safeValues = [username, password];
+
+  client.query(SQL, safeValues)
+    .then( results => {
+      res.redirect(`/user/${results.rows[0].id}`);
+    })
+    .catch(error => {
+      Error(error, res);
+    });
 }
 
 client.connect()

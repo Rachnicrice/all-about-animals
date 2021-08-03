@@ -1,0 +1,29 @@
+<head>
+  <title>dateGenie</title>
+  <link rel="stylesheet" href="/styles/reset.css">
+</head>
+
+<header>
+
+  <div class="unhide">
+    <div class="menu"></div>
+    <div class="menu"></div>
+    <div class="menu"></div>
+  </div>
+
+</header>
+
+<% if (id) { %>
+<nav class="mobile hide">
+  <p><a href="/scores">Leaderboard</a></p>
+  <p><a href="/about">All About the Devs</a></p>
+  <p><a href="/user">Profile</a></p>
+  <p><a href="/login">Log In</a></p>
+</nav>
+<nav class="desktop">
+  <p><a href="/scores">Leaderboard</a></p>
+  <p><a href="/user">Profile</a></p>
+  <p><a href="/about">All About the Devs</a></p>
+  <p><a href="/login">Log In</a></p>
+</nav>
+<% } %>
